@@ -1,10 +1,9 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { GobackService } from '../../services/goback.service';
 
 @Component({
   selector: 'app-billing-details',
   templateUrl: './billing-details.component.html',
-  // styleUrls: ['./billing-details.component.css']
+  styleUrls: ['./billing-details.component.css']
 })
 export class BillingDetailsComponent implements OnInit {
 
@@ -16,10 +15,9 @@ export class BillingDetailsComponent implements OnInit {
 
   error: string;
 
-  constructor(private goback: GobackService) { }
+  constructor() { }
 
   ngOnInit() {
-    this.goback.urlInit();
   }
 
   submit() {

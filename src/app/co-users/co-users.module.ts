@@ -7,12 +7,9 @@ import { NewCoUserComponent } from './new-co-user/new-co-user.component';
 import { RoleControlComponent } from './role-control/role-control.component';
 import { RoleEditComponent } from './role-edit/role-edit.component';
 import { CoUserApiService } from './co-user-api.service';
-import { IonicModule } from 'ionic-angular';
 
 @NgModule({
   imports: [
-    IonicModule.forRoot(CoUsersModule),
-
     BaseModule,
     CoUsersRoutingModule,
   ],
@@ -20,7 +17,7 @@ import { IonicModule } from 'ionic-angular';
     CoUsersComponent,
     NewCoUserComponent,
     RoleControlComponent,
-    RoleEditComponent 
+    RoleEditComponent
   ],
   providers: [CoUserApiService]
 })

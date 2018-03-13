@@ -5,19 +5,13 @@ import { RazorPayService } from '../../services/razorpay.service';
 import { Observable } from 'rxjs/Observable';
 import { Router } from '@angular/router';
 import { WindowService } from '../../services/window.service';
-import { NavController, NavParams } from 'ionic-angular';
-import { DashboardComponent } from '../../components/dashboard/dashboard.component';
-import { environment } from '../../../environments/environment';
-import { EmptyComponent } from '../empty/empty.component';
-import { HomeComponent } from '../../components/home/home.component';
-import { GobackService } from '../../services/goback.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Firm } from '../../models/firm';
 
 @Component({
   selector: 'app-plan-selector',
   templateUrl: './plan-selector.component.html',
-  // styleUrls: ['./plan-selector.component.css']
+  styleUrls: ['./plan-selector.component.css']
 })
 export class PlanSelectorComponent implements OnInit {
 
@@ -25,24 +19,19 @@ export class PlanSelectorComponent implements OnInit {
   paid: boolean;
 
   private selectedPlan: Plan;
+  private firm: Firm;
 
   private email: string;
   private phone: string;
-  private firm: Firm;
-
 
   constructor(private api: ApiService,
     private razorPay: RazorPayService,
     private appRef: ApplicationRef,
     private router: Router,
     private winRef: WindowService,
-    public navCtrl: NavController,
-    public navParams: NavParams, 
-    private goback:GobackService,
-    private modalService: NgbModal ) { }
+    private modalService: NgbModal) { }
 
   ngOnInit() {
-    this.goback.urlInit();
     this.api.plans.subscribe(data => {
       this.plans = [];
 
@@ -79,8 +68,9 @@ export class PlanSelectorComponent implements OnInit {
         ).subscribe(
           data => {
             // redirect
+            this.winRef.window.location.pathname = '/dashboard';
+            
             this.appRef.tick();
-          this.navCtrl.push(EmptyComponent);
           },
           err => alert("Plan was not saved.\n\nContact support with reference no: " + response.razorpay_payment_id)
         );
@@ -111,7 +101,7 @@ export class PlanSelectorComponent implements OnInit {
       
       this.api.setPlan(plan, '', '', '', '').subscribe(
         data => {
-          this.router.navigateByUrl("/");
+          this.router.navigateByUrl('/dashboard');
         },
         err => alert("Plan was not saved.")
       );

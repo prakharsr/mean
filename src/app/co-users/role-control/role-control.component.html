@@ -1,49 +1,46 @@
-<ion-list>    
-      <ion-item>
-        <ion-label>Release Order</ion-label>
-      
-        <ion-select  name="release_order" [(ngModel)]="roles.release_order">
-          <ion-option [value]="0">Block</ion-option>
-          <ion-option [value]="1">View</ion-option>
-          <ion-option [value]="2">Create</ion-option>      
-        </ion-select>
-      
-    </ion-item>
-    <br>
+<div class="row">
+  <div class="col-lg col-md-6">
+    <div class="form-group">
+      <label>Release Order</label>
     
-      <ion-item>
-        <ion-label>Invoice</ion-label>
-      
-        <ion-select  name="invoice" [(ngModel)]="roles.invoice">
-          <ion-option [value]="0">Block</ion-option>
-          <ion-option [value]="1">View</ion-option>
-          <ion-option [value]="2">Create</ion-option>      
-        </ion-select>
+      <select class="form-control" name="release_order" [(ngModel)]="roles.release_order">
+        <option [value]="0">Block</option>
+        <option [value]="1">View</option>
+        <option [value]="2">Create</option>      
+      </select>
+    </div>
+  </div>
+  <div class="col-lg col-md-6">
+    <div class="form-group">
+      <label>Invoice</label>
     
-    </ion-item>
-    <br>
+      <select class="form-control" name="invoice" [(ngModel)]="roles.invoice">
+        <option [value]="0">Block</option>
+        <option [value]="1">View</option>
+        <option [value]="2">Create</option>      
+      </select>
+    </div>
+  </div>
+  <div class="col-lg col-md-6">
+    <div class="form-group">
+      <label>Payment Receipts</label>
     
-      <ion-item>
-        <ion-label>Payment Receipts</ion-label>
-      
-        <ion-select  name="payment_receipts" [(ngModel)]="roles.payment_receipts">
-          <ion-option [value]="0">Block</ion-option>
-          <ion-option [value]="1">View</ion-option>
-          <ion-option [value]="2">Create</ion-option>      
-        </ion-select>
-     
-    </ion-item>
-    <br>
+      <select class="form-control" name="payment_receipts" [(ngModel)]="roles.payment_receipts">
+        <option [value]="0">Block</option>
+        <option [value]="1">View</option>
+        <option [value]="2">Create</option>      
+      </select>
+    </div>
+  </div>
+  <div class="col-lg col-md-6">
+    <div class="form-group">
+      <label>Accounts</label>
     
-      <ion-item>
-        <ion-label>Accounts</ion-label>
-      
-        <ion-select  name="accounts" [(ngModel)]="roles.accounts">
-          <ion-option [value]="0">Block</ion-option>
-          <ion-option [value]="1">View</ion-option>
-          <ion-option [value]="2">Create</ion-option>      
-        </ion-select>
-      </ion-item>
-      <br>
-
-</ion-list>
+      <select class="form-control" name="accounts" [(ngModel)]="roles.accounts">
+        <option [value]="0">Block</option>
+        <option [value]="1">View</option>
+        <option [value]="2">Create</option>      
+      </select>
+    </div>
+  </div>
+</div>

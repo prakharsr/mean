@@ -1,11 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../../services/api.service';
-import { GobackService } from '../../services/goback.service';
 
 @Component({
   selector: 'app-forgot-psw',
   templateUrl: './forgot-psw.component.html',
-  // styleUrls: ['./forgot-psw.component.css']
+  styleUrls: ['./forgot-psw.component.css']
 })
 export class ForgotPswComponent implements OnInit {
 
@@ -13,10 +12,9 @@ export class ForgotPswComponent implements OnInit {
   error: string;
   success: boolean;
 
-  constructor(private api: ApiService, private goback:GobackService) { }
+  constructor(private api: ApiService) { }
 
   ngOnInit() {
-    this.goback.urlInit();
   }
 
   submit() {

@@ -2,13 +2,12 @@ import { Component, OnInit, Input, Output, EventEmitter, HostBinding } from '@an
 import { Template } from '../../models/template';
 import { ApiService } from '../../services/api.service';
 import { routerAnimation } from '../../animations';
-import { GobackService } from '../../services/goback.service';
 
 @Component({
   selector: 'app-template-selector',
   animations: [routerAnimation],
   templateUrl: './template-selector.component.html',
-  // styleUrls: ['./template-selector.component.css']
+  styleUrls: ['./template-selector.component.css']
 })
 export class TemplateSelectorComponent implements OnInit {
 
@@ -24,10 +23,9 @@ export class TemplateSelectorComponent implements OnInit {
 
   @Output() done = new EventEmitter();
 
-  constructor(private api: ApiService, private goback:GobackService) { }
+  constructor(private api: ApiService) { }
 
   ngOnInit() {
-    this.goback.urlInit();
     this.api.templates.subscribe(data => {
       this.templates = data;
       this.invoiceTemplate = this.releaseOrderTemplate = this.paymentReceiptTemplate = data[0];

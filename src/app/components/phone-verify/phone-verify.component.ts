@@ -1,12 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../../services/api.service';
 import { Router } from '@angular/router';
-import { GobackService } from '../../services/goback.service';
 
 @Component({
   selector: 'app-phone-verify',
   templateUrl: './phone-verify.component.html',
-  // styleUrls: ['./phone-verify.component.css']
+  styleUrls: ['./phone-verify.component.css']
 })
 export class PhoneVerifyComponent implements OnInit {
 
@@ -17,7 +16,7 @@ export class PhoneVerifyComponent implements OnInit {
   sendError : string;
   verifyError: string;
 
-  constructor(private api: ApiService, private router: Router, private goback:GobackService) { }
+  constructor(private api: ApiService, private router: Router) { }
 
   ngOnInit() {
     this.api.getUser().subscribe(data => {

@@ -1,6 +1,5 @@
 import { Component, OnInit, HostBinding, ViewChild } from '@angular/core';
 import { CoUser } from '../coUser';
-import { ApiService } from '../../services/api.service';
 import { UserRoles } from '../userRoles';
 import { routerAnimation } from '../../animations';
 import { Router } from '@angular/router';
@@ -12,7 +11,7 @@ import { CoUserApiService } from '../co-user-api.service';
   selector: 'app-new-co-user',
   animations: [routerAnimation],
   templateUrl: './new-co-user.component.html',
-  // styleUrls: ['./new-co-user.component.css']
+  styleUrls: ['./new-co-user.component.css']
 })
 export class NewCoUserComponent implements OnInit, CanComponentDeactivate {
 
@@ -20,13 +19,7 @@ export class NewCoUserComponent implements OnInit, CanComponentDeactivate {
 
   @ViewChild('newCoUserForm') newCoUserForm: NgForm;
 
-  name: string;
-  designation: string;
-  email: string;
-  phone: string;
-  password: string;
-  cpassword: string;
-  roles = new UserRoles();
+  coUser = new CoUser();
 
   error: string;
 
@@ -46,31 +39,29 @@ export class NewCoUserComponent implements OnInit, CanComponentDeactivate {
   submit() {
     this.error = '';
 
-    this.api.createCoUser(this.name, this.designation, this.email, this.phone).subscribe(
+    this.api.createCoUser(this.coUser).subscribe(
       data => {
         if (data.success)
         {
-          let coUser = new CoUser(this.name, this.designation, this.email, this.phone);
+          this.coUser.id = data.msg;
 
-          coUser.id = data.msg;
+          if (!this.coUser.isAdmin) {
+            this.api.setRoles(this.coUser.id, this.coUser.roles).subscribe(d => {
+              if (d.success) {
+                this.navigateBack();
+              }
+              else {
+                console.log(d);
 
-          this.api.setRoles(coUser.id, this.roles).subscribe(d => {
-            if (d.success) {
-              coUser.roles = this.roles;
+                this.error = d.msg;
+              }
+            },
+            err => {
+              console.log(err);
 
-              this.navigateBack();
-            }
-            else {
-              console.log(d);
-
-              this.error = d.msg;
-            }
-          },
-          err => {
-            console.log(err);
-
-            this.error = 'Connection failed';
-          });
+              this.error = 'Connection failed';
+            });
+          }
         }
         else {
           console.log(data);

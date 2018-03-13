@@ -1,6 +1,3 @@
-import { IonicModule } from 'ionic-angular';
-import { GobackService} from './services/goback.service';
-
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
@@ -21,7 +18,6 @@ import { AdminGuard } from './guards/admin-guard.service';
 import { PlanGuard } from './guards/plan-guard.service';
 import { CanDeactiveGuard } from './guards/can-deactive-guard.service';
 
-
 @NgModule({
   imports: [
     CommonModule,
@@ -32,8 +28,6 @@ import { CanDeactiveGuard } from './guards/can-deactive-guard.service';
     BrowserAnimationsModule
   ],
   providers: [
-    GobackService,
-
     ApiService,
     WindowService,
     RazorPayService,

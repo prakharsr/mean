@@ -3,23 +3,23 @@
         <h1 class="display-4">Dashboard</h1>
     </div>
 </div>
-<br>
+
 <div class="container">
     <div class="row">
         <div class="col-lg-3 col-md-4 col-sm-6">
-            <button ion-button block color="brand_primary" class="btn btn-primary" (click)="this.goback.gotoComponent('profile')"><span class="fa fa-lg fa-user-circle"></span> User Profile</button>
+            <a class="btn btn-primary" routerLink="/profile"><span class="fa fa-lg fa-user-circle"></span> User Profile</a>
         </div>
         <div class="col-lg-3 col-md-4 col-sm-6">
-            <button ion-button block color="brand_success"  class="btn btn-success" (click)="this.goback.gotoComponent('firm')"><span class="fa fa-lg fa-building"></span> Firm Profile</button>
+            <a class="btn btn-success" routerLink="/firm"><span class="fa fa-lg fa-building"></span> Firm Profile</a>
         </div>
         <div class="col-lg-3 col-md-4 col-sm-6">
-            <button ion-button block color="brand_warning" class="btn btn-warning" (click)="this.goback.gotoComponent('coUsers')"><span class="fa fa-lg fa-users"></span> Co-Users</button>
+            <a class="btn btn-warning" routerLink="/coUsers"><span class="fa fa-lg fa-users"></span> Co-Users</a>
         </div>
         <div class="col-lg-3 col-md-4 col-sm-6">
-            <button ion-button block color="brand_info" class="btn btn-info" (click)="this.goback.gotoComponent('dir')"><span class="fa fa-lg fa-address-book"></span> Directory</button>
+            <a class="btn btn-info" routerLink="/dir"><span class="fa fa-lg fa-address-book"></span> Directory</a>
         </div>
         <div class="col-lg-3 col-md-4 col-sm-6" *ngIf="admin">
-            <button ion-button block color="brand_secondary" class="btn btn-secondary" (click)="this.goback.gotoComponent('templates')"><span class="fa fa-lg fa-file-alt"></span> Templates</button>
+            <a class="btn btn-secondary" routerLink="/templates"><span class="fa fa-lg fa-file-alt"></span> Templates</a>
         </div>
     </div>
 </div>

@@ -5,13 +5,12 @@ import { Firm } from '../../models/firm';
 import { ApiService } from '../../services/api.service';
 import { NgForm } from '@angular/forms';
 import { CanComponentDeactivate } from '../../guards/canComponentDeactivate';
-import { GobackService } from '../../services/goback.service';
 
 @Component({
   selector: 'app-firm-profile-edit',
   animations: [routerAnimation],
   templateUrl: './firm-profile-edit.component.html',
-  // styleUrls: ['./firm-profile-edit.component.css']
+  styleUrls: ['./firm-profile-edit.component.css']
 })
 export class FirmProfileEditComponent implements OnInit, CanComponentDeactivate {
 
@@ -23,10 +22,9 @@ export class FirmProfileEditComponent implements OnInit, CanComponentDeactivate 
   error: string;
   success: string;
 
-  constructor(private ifscService: IfscService, private api: ApiService, private goback:GobackService) { }
+  constructor(private ifscService: IfscService, private api: ApiService) { }
 
   ngOnInit() {
-    this.goback.urlInit();
     this.api.getFirmProfile().subscribe(data => this.profile = data);
   }
 

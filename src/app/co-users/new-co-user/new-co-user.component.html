@@ -1,70 +1,77 @@
-<br>
+<div class="jumbotron jumbotron-fluid">
+  <div class="container">
+    <h1 class="display-4">Add New Co-User</h1>
+  </div>
+</div>
+
 <div class="container">
-<h2>Add New Co-User</h2>
-<br>
+  <form (ngSubmit)="submit()" #newCoUserForm="ngForm">
+    <div class="form-group form-row">
+      <label class="col-form-label col-md-3" for="name">Name</label>
+      <input type="text" class="form-control col-md-9" id="name" name="name" placeholder="Enter name" [(ngModel)]="coUser.name" required #nameField="ngModel">
+    </div>
 
-<form (ngSubmit)="submit()" #newCoUserForm="ngForm">
-
-  <ion-item class="form-group form-row">
-    <ion-label floating class="col-form-label col-md-3" for="name">Name</ion-label>
-    <ion-input type="text" id="name" name="name" [(ngModel)]="name" required #nameField="ngModel"></ion-input>
-  </ion-item>
-
-  <div *ngIf="nameField.invalid && (nameField.dirty || nameField.touched)" class="text-danger">
+    <div *ngIf="nameField.invalid && (nameField.dirty || nameField.touched)" class="text-danger">
       <div *ngIf="nameField.errors.required">
         Name is required.
       </div>
       <br>
     </div>
 
-  <ion-item class="form-group form-row">
-    <ion-label floating class="col-form-label col-md-3" for="designation">Designation</ion-label>
-    <ion-input type="text" id="designation" name="designation" [(ngModel)]="designation" #designationField="ngModel"></ion-input>
-  </ion-item>
-
-  <ion-item class="form-group form-row">
-    <ion-label floating class="col-form-label col-md-3" for="email">Email address</ion-label>
-    <ion-input type="email" id="email" name="email" [(ngModel)]="email" required #emailField="ngModel" email></ion-input>
-  </ion-item>
-
-  <div *ngIf="emailField.invalid && (emailField.dirty || emailField.touched)" class="text-danger">
-    <div *ngIf="emailField.errors.required">
-      Email is required.
+    <div class="form-group form-row">
+      <label class="col-form-label col-md-3" for="designation">Designation</label>
+      <input type="text" class="form-control col-md-9" id="designation" name="designation" placeholder="Enter Designation" [(ngModel)]="coUser.designation" #designationField="ngModel">
     </div>
-    <div *ngIf="!emailField.errors.required && emailField.errors.email">
-      Invalid Email.
+
+    <div class="form-group form-row">
+      <label class="col-form-label col-md-3" for="email">Email address</label>
+      <input type="email" class="form-control col-md-9" id="email" name="email" placeholder="Enter email" [(ngModel)]="coUser.email" required #emailField="ngModel" email>
     </div>
+
+    <div *ngIf="emailField.invalid && (emailField.dirty || emailField.touched)" class="text-danger">
+      <div *ngIf="emailField.errors.required">
+        Email is required.
+      </div>
+      <div *ngIf="!emailField.errors.required && emailField.errors.email">
+        Invalid Email.
+      </div>
+      <br>
+    </div>
+
+    <div class="form-group form-row">
+      <label class="col-form-label col-md-3" for="phone">Phone Number</label>
+      <input type="number" class="form-control col-md-9" id="phone" name="phone" placeholder="Enter Phone Number" [(ngModel)]="coUser.phone" required #phoneField="ngModel">
+    </div>
+
+    <div *ngIf="phoneField.invalid && (phoneField.dirty || phoneField.touched)" class="text-danger">
+      <div *ngIf="phoneField.errors.required">
+        Phone Number is empty or invalid.
+      </div>
+      <br>
+    </div>
+
     <br>
-  </div>
-
-  <ion-item class="form-group form-row">
-    <ion-label floating class="col-form-label col-md-3" for="phone">Phone Number</ion-label>
-    <ion-input type="number" id="phone" name="phone" [(ngModel)]="phone" required #phoneField="ngModel"></ion-input>
-  </ion-item>
-
-  <div *ngIf="phoneField.invalid && (phoneField.dirty || phoneField.touched)" class="text-danger">
-    <div *ngIf="phoneField.errors.required">
-      Phone Number is empty or invalid.
-    </div>
+    <h4>Roles</h4>
     <br>
-  </div>
 
+    <div class="form-check">
+      <input type="checkbox" class="form-check-input" id="isAdmin" name="isAdmin" [(ngModel)]="coUser.isAdmin">
+      <label class="form-check-label" for="isAdmin">Is Admin</label>
+    </div>
+    
+    <br>      
 
-  <br>
-  <h4>Roles</h4>
-  <br>
+    <app-role-control *ngIf="!coUser.isAdmin" [(roles)]="coUser.roles"></app-role-control>
 
-  <app-role-control [(roles)]="roles"></app-role-control>
+    <br>
 
-  <br>
-  
-  <div class="text-danger" *ngIf="error">
-    {{error}}
+    <div class="text-danger" *ngIf="error">
+      {{error}}
 
-    <br><br>
-  </div>
+      <br><br>
+    </div>
 
-  <button ion-button type="submit" color="brand_success" class="btn btn-success" [disabled]="!newCoUserForm.form.valid">Add</button>
-  <button ion-button type="button" color="brand_danger" class="btn btn-danger" (click)="onCancel()">Cancel</button>
-</form>
+    <button type="submit" class="btn btn-success" [disabled]="!newCoUserForm.form.valid">Add</button>
+    <button type="button" class="btn btn-danger" (click)="onCancel()">Cancel</button>
+  </form>
 </div>

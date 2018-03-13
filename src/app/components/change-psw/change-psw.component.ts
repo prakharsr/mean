@@ -1,24 +1,21 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../../services/api.service';
-import { GobackService } from '../../services/goback.service';
 
 @Component({
   selector: 'app-change-psw',
   templateUrl: './change-psw.component.html',
-  // styleUrls: ['./change-psw.component.css']
+  styleUrls: ['./change-psw.component.css']
 })
 export class ChangePswComponent implements OnInit {
 
   oldPassword: string;
   password: string;
-  cpassword: string;
   error: string;
   success: boolean;
 
-  constructor(private api: ApiService, private goback: GobackService) { }
+  constructor(private api: ApiService) { }
 
   ngOnInit() {
-    this.goback.urlInit();
   }
 
   submit() {

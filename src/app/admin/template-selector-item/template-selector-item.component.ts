@@ -1,16 +1,14 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Template } from '../../models/template';
-import { GobackService } from '../../services/goback.service';
 
 @Component({
   selector: 'app-template-selector-item',
   templateUrl: './template-selector-item.component.html',
-  // styleUrls: ['./template-selector-item.component.css']
+  styleUrls: ['./template-selector-item.component.css']
 })
 export class TemplateSelectorItemComponent implements OnInit {
 
-  ngOnInit() { 
-  }
+  ngOnInit() { }
 
   @Input() name: string;
 

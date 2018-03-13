@@ -1,69 +1,30 @@
-<ion-header>
-    <ion-navbar>
-        <ion-buttons left>
-          <!-- *ngIf="!this.isLoginComponent"  -->
-            <button ion-button icon-only (click)="this.goback.goBack()" class="hamburger">
-                <ion-icon name="arrow-back"></ion-icon>
-            </button>
-        </ion-buttons>
-        <ion-buttons right>
-          <button ion-button icon-only *ngIf="!this.api.isLoggedIn" (click)="this.goback.gotoComponent('login')" class="hamburger">
-              <ion-icon name="log-in"></ion-icon>
-          </button>
-          <button ion-button icon-only *ngIf="this.api.isLoggedIn" (click)=" api.logout(); this.goback.gotoComponent('')" class="hamburger">
-            <ion-icon name="log-out"></ion-icon>
-        </button>
-      </ion-buttons>
-        <button class="hamburger" ion-button menuToggle left>
-            <ion-icon name="menu"></ion-icon>
-        </button>
-        <ion-title>AAMan</ion-title>
-    </ion-navbar>
-  </ion-header>
-  <ion-menu [content]="content">
-    <ion-header>
-      <ion-toolbar>
-        <ion-title>Menu</ion-title>
-      </ion-toolbar>
-    </ion-header>
-    <ion-content>
-      <ion-list>
-        <!-- <button ion-item *ngIf="!api.isLoggedIn" routerLink="/" menuClose>
-        Home
-        </button> -->
-        <button class="hamburger" ion-item routerLinkActive="active" *ngIf="!api.isLoggedIn" (click)="this.goback.gotoComponent('login')" menuClose>
-        Login
-        </button>
-        <button class="hamburger" ion-item routerLinkActive="active" *ngIf="!api.isLoggedIn" (click)="this.goback.gotoComponent('register')" menuClose>
-        Register
-        </button>  
-        <button class="hamburger" ion-item routerLinkActive="active" *ngIf="!api.isLoggedIn" (click)="this.goback.gotoComponent('forgotPassword')" menuClose>
-        Forgot Password
-        </button>      
-        <button class="hamburger" ion-item routerLinkActive="active" *ngIf="api.isLoggedIn" (click)="this.goback.gotoComponent('dashboard')" menuClose>
-        Dashboard
-        </button>
-        <button class="hamburger" ion-item routerLinkActive="active" *ngIf="api.isLoggedIn" (click)="this.goback.gotoComponent('profile')" menuClose>
-        User Profile
-        </button>
-        <button class="hamburger" ion-item routerLinkActive="active" *ngIf="api.isLoggedIn" (click)="this.goback.gotoComponent('firm')" menuClose>
-        Firm Profile
-        </button>
-        <button class="hamburger" ion-item routerLinkActive="active" *ngIf="api.isLoggedIn" (click)="this.goback.gotoComponent('coUsers')" menuClose>
-        Co-Users
-        </button><button class="hamburger" ion-item routerLinkActive="active" *ngIf="api.isLoggedIn" (click)="this.goback.gotoComponent('coUsers')" menuClose>
-        Directory
-        </button><button class="hamburger" ion-item routerLinkActive="active" *ngIf="api.isLoggedIn" (click)="this.goback.gotoComponent('dir')" menuClose>
-        Templates
-        </button><button class="hamburger" ion-item routerLinkActive="active" *ngIf="api.isLoggedIn" (click)="this.goback.gotoComponent('changePassword')" menuClose>
-        Change Password
-        </button>
-        <button class="hamburger" ion-item routerLinkActive="active" *ngIf="api.isLoggedIn" (click)="this.goback.gotoComponent(''); api.logout()" menuClose>
-          Logout
-        </button>
-        
-      </ion-list>
-    </ion-content>
-  </ion-menu>
+<nav class="navbar navbar-expand-sm navbar-dark bg-info">
+  <div class="container">
+      <a class="navbar-brand" routerLink="/">AAMan</a>
+      <button class="navbar-toggler" (click)="toggleNavbar()" type="button">
+          <span class="navbar-toggler-icon"></span>
+      </button>
   
-  <ion-nav id="nav" #content [root]="rootPage"></ion-nav>
+      <div class="collapse navbar-collapse" [ngbCollapse]="isNavbarCollapsed">
+        <ul class="navbar-nav mr-auto" *ngIf="api.isLoggedIn">
+            <li class="nav-item">
+                <a class="nav-link" routerLinkActive="active" (click)="collapseNavbar()" routerLink="/dashboard"><span class="fa fa-columns"></span> Dashboard</a>
+            </li>
+        </ul>
+        <ul class="navbar-nav mr-auto" *ngIf="!api.isLoggedIn"></ul>
+        <ul class="navbar-nav" *ngIf="api.isLoggedIn">
+            <li class="nav-item">
+                <a class="nav-link" routerLink="/" (click)="api.logout();collapseNavbar()"><span class="fa fa-sign-out-alt"></span> Logout</a>
+            </li>
+        </ul>
+        <ul class="navbar-nav" *ngIf="!api.isLoggedIn">
+            <li class="nav-item">
+                <a class="nav-link" routerLinkActive="active" (click)="collapseNavbar()" routerLink="/register">Register</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" routerLinkActive="active" (click)="collapseNavbar()" routerLink="/login"><span class="fa fa-sign-in-alt"></span> Login</a>
+            </li>
+        </ul>
+      </div>
+  </div>
+</nav>
