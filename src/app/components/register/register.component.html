@@ -1,0 +1,68 @@
+<div class="jumbotron jumbotron-fluid">
+  <div class="container">
+    <h1 class="display-4">Sign Up</h1>
+    <p class="lead">For Advertsing Agency Administrators</p>
+  </div>
+</div>
+
+<div class="container">
+
+<form (ngSubmit)="submit()" #signUpForm="ngForm">
+
+  <ion-item class="form-group">
+    <ion-label for="name" floating>Name</ion-label>
+    <ion-input type="text" id="name" name="name" [(ngModel)]="name" required #nameField="ngModel"></ion-input>
+  </ion-item> 
+
+  <div *ngIf="nameField.invalid && (nameField.dirty || nameField.touched)" class="text-danger">
+    <div *ngIf="nameField.errors.required">
+      Name is required.
+    </div>
+    <br>
+  </div>
+  
+  <ion-item class="form-group">
+    <ion-label floating for="email">Email address</ion-label>
+    <ion-input type="email" id="email" name="email" [(ngModel)]="email" required #emailField="ngModel" email></ion-input>
+  </ion-item>
+  <small class="form-text text-muted">
+    <br>An auto-generated password will be sent to this Email.<br>
+</small>
+
+  <div *ngIf="emailField.invalid && (emailField.dirty || emailField.touched)" class="text-danger">
+    <div *ngIf="emailField.errors.required">
+      Email is required.
+    </div>
+    <div *ngIf="!emailField.errors.required && emailField.errors.email">
+      Invalid Email.
+    </div>
+    <br>
+  </div>
+
+<br><br>
+
+  <div class="form-check">
+    <input type="checkbox" class="form-check-input" id="acceptTnC" name="acceptTnC" [(ngModel)]="acceptTnC" required #acceptTnCField="ngModel">
+    <label class="form-check-label" for="acceptTnC">&nbsp;&nbsp;&nbsp;Accept Terms and Conditions</label>
+  </div>
+
+  <div *ngIf="acceptTnCField.invalid && (acceptTnCField.dirty || acceptTnCField.touched)" class="text-danger">
+    <div *ngIf="acceptTnCField.errors.required">
+        Accept Terms and Conditions to continue.
+    </div>
+    <br>
+  </div>
+
+  <br>
+
+  <div class="text-danger" *ngIf="error">
+    {{error}}
+
+    <br><br>
+  </div>
+  <button ion-button type="submit" color="brand_success" [disabled]="!signUpForm.form.valid">Sign Up</button>
+</form>
+
+<br>
+<p>Already have an account, <a routerLink="/login">Login</a>.</p>
+</div>

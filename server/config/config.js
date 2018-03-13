@@ -35,10 +35,16 @@ const config = {
   port: envVars.SERVER_PORT,
   mongooseDebug: envVars.MONGOOSE_DEBUG,
   jwtSecret: envVars.JWT_SECRET,
+  accountSid = "AC5be1ca4de8534bb9f59d9c0f30c266ea",
+  authToken = "b17d672449db40dc24531ae162ba4582",
+  twilioNumber = "+12017620847",
+  authyKey = "D9wNhG7vy0FadGLM6p0ztQNmsy2mPvu7",
+  enableValidationSMS=1,
   mongo: {
     host: envVars.MONGO_HOST,
     port: envVars.MONGO_PORT
   }
 };
 
+module.exports = config;
 export default config;

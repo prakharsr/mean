@@ -6,7 +6,40 @@ import util from 'util';
 import config from './server/config/config';
 import app from './server/config/express';
 
+var cors = require('cors');
+// var express = require('express');
+// var app  = express();
+// var mongoose = require('mongoose');
+// var config = require('./config');
+// var port = config.PORT;
+var morgan = require('morgan');
+var bodyParser = require('body-parser');
+var path = require('path');
 
+var corsOptions = {
+  "origin": "*",
+  "responseHeader": "Origin, X-Requested-With, Content-Type, Accept, Authorization",
+  "method": "POST, GET, PUT,PATCH, DELETE, OPTIONS",
+  "maxAgeSeconds": 120
+}
+
+app.use(cors(corsOptions));
+
+var jwt = require('jsonwebtoken');
+
+var passport = require("passport");
+var passportJWT = require("passport-jwt");
+
+var ExtractJwt = passportJWT.ExtractJwt;
+var JwtStrategy = passportJWT.Strategy;
+
+
+app.use(morgan('dev'));
+app.use(bodyParser.urlencoded({ extended: false }));
+// parse application/json
+app.use(bodyParser.json());
+app.use(express.static(__dirname + '/server/public'));
+app.use('/api', cors(corsOptions), require('./server/api/routes/router'));
 const debug = require('debug')('express-mongoose-es6-rest-api:index');
 
 // make bluebird default Promise
@@ -17,7 +50,7 @@ mongoose.Promise = Promise;
 
 // connect to mongo db
 const mongoUri = config.mongo.host;
-mongoose.connect(mongoUri, { server: { socketOptions: { keepAlive: 1 } } });
+mongoose.connect('mongodb://prakharsr:lambo@ds147882.mlab.com:47882/zaaadb', { server: { socketOptions: { keepAlive: 1 } } });
 mongoose.connection.on('error', () => {
   throw new Error(`unable to connect to database: ${mongoUri}`);
 });
@@ -28,6 +61,9 @@ if (config.MONGOOSE_DEBUG) {
     debug(`${collectionName}.${method}`, util.inspect(query, false, 20), doc);
   });
 }
+app.get('*', function(req,res){
+	res.sendFile(path.join(__dirname + '/server/public/app/views/index.html'));
+});
 // module.parent check is required to support mocha watch
 // src: https://github.com/mochajs/mocha/issues/1912
 

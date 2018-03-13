@@ -1,0 +1,72 @@
+// http://ionicframework.com/docs/theming/
+
+
+// App Global Sass
+// --------------------------------------------------
+// Put style rules here that you want to apply globally. These
+// styles are for the entire app and not just one component.
+// Additionally, this file can be also used as an entry point
+// to import other Sass files to be included in the output CSS.
+
+// Shared Sass variables, which can be used to adjust Ionic's
+// default Sass variables, belong in "theme/variables.scss".
+
+// To declare rules for a specific mode, create a child rule
+// for the .md, .ios, or .wp mode classes. The mode class is
+// automatically applied to the <body> element in the app.
+
+.max-w-200 {
+    max-width: 200px;
+}
+
+.hidden-file {
+    position: fixed;
+    right: 100%;
+    bottom: 100%;
+}
+
+.fab {
+    width: 70px;
+    height: 70px;
+    text-align: center;
+    border: none;
+    outline: none;
+    color: white;
+    border-radius: 100%;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+    transition:.3s;
+    background-color:#F44336;
+    z-index: 10;
+    position: fixed;
+    right: 40px;
+    bottom: 50px;
+    cursor: pointer;
+    display: block;
+}
+
+.fab .fa {
+    position: absolute;
+    top: calc(50% - 7px);
+    left: calc(50% - 7px);
+}
+
+.fab:hover {
+    transform: scale(1.1);
+}
+
+.fab:focus {
+    outline: none;
+}
+
+.fa {
+    margin-right: 5px;
+}
+
+@media (max-width:767px) {
+    .fab {
+        width: 50px;
+        height: 50px;
+        right: 30px;
+        bottom: 30px;
+    }
+}
